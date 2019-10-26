@@ -2,7 +2,10 @@
 import { isPlaying } from '../stores/game';
 // с помощью функции get можно получить текущее значение стора, без подписки.
 import { get } from 'svelte/store';
-import { rotateCannon } from './cannon'; // импортируем обработчик поворота пушки
+// импортируем обработчик поворота пушки
+// Импортируем все обработчики событий пушки и снарядов
+import { rotateCannon, shoot, moveBullet, clearBullets } from "./cannon";
+
 
 // Функция отвечает за игровой цикл
 function startLoop(steps) {
@@ -22,7 +25,8 @@ export const startGame = () => {
     // Устанавливаем переменную, которая хранит состояние игры в true
     isPlaying.set(true);
     // запускаем игровой цикл. Пока массив шагов пустой
-    startLoop([rotateCannon]);
+    // добавим обработчики в игровой цикл
+    startLoop([rotateCannon, shoot, moveBullet, clearBullets ]);
 };
 
 // Функция отвечает за остановку игрового цикла

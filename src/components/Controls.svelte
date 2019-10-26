@@ -5,11 +5,16 @@
     import RightArrow from "../assets/RightArrow.svelte";
     import Bullet from "../assets/Bullet.svelte";
     // импортируем переменную направления поворота
-    import { direction } from "../stores/cannon.js";
+    // Импортируем переменную, которая отвечает за нажатие кнопки огонь
+    import { direction, isFiring } from "../stores/cannon.js";
+
     // создаем обработчики событий
     const resetDirection = () => direction.set(null);
     const setDirectionLeft = () => direction.set("left");
     const setDirectionRight = () => direction.set("right");
+    // Добавим обработчики нажатия кнопки огонь
+    const startFire = () => isFiring.set(true);
+    const stopFire = () => isFiring.set(false);
 </script>
 
 <style>
@@ -51,7 +56,7 @@
                 <RightArrow />
             </IconButton>
         </div>
-        <IconButton>
+        <IconButton start={startFire} release={stopFire} active={$isFiring}>
             <Bullet />
         </IconButton>
     </div>

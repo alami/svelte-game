@@ -7,3 +7,7 @@ export const direction = writable(null);
 
 // Текущий угол поворота пушки
 export const angle = writable(0);
+// Добавляем переменные
+export const isFiring = writable(false);
+export const lastFireAt = writable(0);
+export const bulletList = writable([]);
