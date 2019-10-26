@@ -1,6 +1,10 @@
 <script>
 	import Controls from "./components/Controls.svelte";
 	import GameField from "./components/GameField.svelte";
+	// импортируем функцию страта игры
+	import { startGame } from "./gameLoop/gameLoop";
+	// Запускаем
+	startGame();
 </script>
 
 <style>

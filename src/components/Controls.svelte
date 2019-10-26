@@ -4,6 +4,12 @@
     import LeftArrow from "../assets/LeftArrow.svelte";
     import RightArrow from "../assets/RightArrow.svelte";
     import Bullet from "../assets/Bullet.svelte";
+    // импортируем переменную направления поворота
+    import { direction } from "../stores/cannon.js";
+    // создаем обработчики событий
+    const resetDirection = () => direction.set(null);
+    const setDirectionLeft = () => direction.set("left");
+    const setDirectionRight = () => direction.set("right");
 </script>
 
 <style>
@@ -31,10 +37,17 @@
 <div class="controls">
     <div class="container">
         <div class="arrowGroup">
-            <IconButton>
+            <!-- Передаем наши обработчики и направление в атрибуты -->
+            <IconButton
+                    start={setDirectionLeft}
+                    release={resetDirection}
+                    active={$direction === 'left'}>
                 <LeftArrow />
             </IconButton>
-            <IconButton>
+            <IconButton
+                    start={setDirectionRight}
+                    release={resetDirection}
+                    active={$direction === 'right'}>
                 <RightArrow />
             </IconButton>
         </div>
